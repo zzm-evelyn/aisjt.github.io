@@ -10,7 +10,10 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "admin:init": "node scripts/admin-init.mjs"
+    "admin:init": "node scripts/admin-init.mjs",
+    "build:demo": "npm --prefix apps/public-demo run build",
+    "test:demo": "npm --prefix apps/public-demo test",
+    "typecheck:demo": "npm --prefix apps/public-demo run typecheck"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
