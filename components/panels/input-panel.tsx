@@ -1,0 +1,4 @@
+"use client";
+import Link from "next/link";
+import { useWorkspaceStore } from "@/lib/store/workspace-store";
+export function InputPanel(){const run=useWorkspaceStore(s=>s.baseRun);if(!run)return null;return <aside className="thin-scrollbar h-full overflow-auto rounded-xl border border-line bg-panel p-5"><h2 className="text-base font-semibold">当前项目</h2><p className="mt-3 text-sm text-ink-soft">{run.story.title}</p><p className="mt-2 text-xs text-muted">{run.items.length} 道题目 · {run.source_items.length} 条来源</p><h3 className="mt-7 mb-3 text-sm font-semibold">来源条目</h3><div className="space-y-3">{run.source_items.slice(0,5).map(i=><p key={i.source_item_id} className="rounded-lg bg-panel-muted p-3 text-xs leading-6">{i.text}</p>)}</div><Link href="/settings" className="quiet-link mt-6">模型配置 →</Link></aside>;}

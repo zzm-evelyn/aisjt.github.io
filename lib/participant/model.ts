@@ -1,0 +1,14 @@
+import { z } from "zod";
+export const browserCookie="sjt_participant_browser";
+export const retentionSeconds=30*86400;
+export const startSchema=z.object({testId:z.string().uuid(),expectedReleaseId:z.string().uuid(),requestId:z.string().uuid(),participantCode:z.string().trim().max(80).default(""),consent:z.literal(true)}).strict();
+export const answerSchema=z.object({itemId:z.string().min(1).max(200),optionId:z.string().min(1).max(200),expectedRevision:z.number().int().nonnegative(),requestId:z.string().uuid()}).strict();
+export type StartInput=z.infer<typeof startSchema>;
+export type AnswerInput=z.infer<typeof answerSchema>;
+export type Answer={itemId:string;optionId:string;revision:number;savedAt:string};
+export type SessionView={id:string;testId:string;releaseId:string;releaseNumber:number;title:string;participantCode:string;status:"in_progress"|"submitted";currentIndex:number;answered:number;total:number;answers:Answer[];createdAt:string;updatedAt:string;completedAt:string|null;submissionId:string|null};
+export type SaveResult={answer:Answer;acceptedRevision:number;replayed:boolean;status:SessionView["status"]};
+export type Availability={testId:string;releaseId:string|null;acceptingNew:boolean;revision:number};
+export type PublicTest={testId:string;releaseId:string;releaseNumber:number;title:string;description:string;audienceId:string;audience:string;contextId:string;context:string;itemCount:number;coverAssetId:string|null};
+export type PublicCatalog={tests:PublicTest[]};
+export type TestWelcome={test:PublicTest;introduction:string;instruction:string;consent:string};

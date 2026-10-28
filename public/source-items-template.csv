@@ -1,0 +1,2 @@
+source_item_id,source_text,domain,facet,construct_definition,reverse_flag,notes
+SOURCE-A-001,示例条目文本（请替换）,自定义维度A,,在此填写研究者定义的构念含义,false,显示题号不是稳定来源身份
